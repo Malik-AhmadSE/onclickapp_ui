@@ -1,4 +1,6 @@
+import { RightBar } from "@/components/app-rightbar"
 import { AppSidebar } from "@/components/app-sidebar"
+import { MessageBubble } from "@/components/message-bubble"
 import { SiteHeader } from "@/components/site-header"
 import {
     SidebarInset,
@@ -18,18 +20,19 @@ export default function Page() {
             }
         >
             <AppSidebar variant="inset" />
-            <SidebarInset>
+            <SidebarInset className="bg-[#F8F8F8]">
+
                 <SiteHeader />
-                <div className="flex bg-foreground rounded-bl-[8px] rounded-br-[8px] flex-1 flex-col">
-                    <div className="@container/main flex flex-1 flex-col gap-2">
-                        <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
 
 
+                <div className="flex   justify-between gap-4 text-black">
 
-                        </div>
-                    </div>
+                    <MessageBubble />
+
+                    <RightBar />
+
                 </div>
             </SidebarInset>
-        </SidebarProvider>
+        </SidebarProvider >
     )
 }

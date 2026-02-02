@@ -17,30 +17,24 @@ export function NavMain({
   items: {
     title: string
     url: string
-    icon?: Icon
+    icon: string
   }[]
 }) {
   return (
     <SidebarGroup>
-      <SidebarGroupContent className="flex flex-col gap-2">
-        <SidebarMenu>
-          <SidebarMenuItem className="flex items-center gap-2">
-            <SidebarMenuButton
-              tooltip="Quick Create"
-              className="bg-primary w-[217px] h-[44px] pt-[12px] pb-[12px] pl-[12px] pr-[8px] rounded-[8px] text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear"
-            >
-              <IconCirclePlusFilled />
-              <span>Quick Create</span>
-            </SidebarMenuButton>
-
-          </SidebarMenuItem>
-        </SidebarMenu>
-        <SidebarMenu>
+      <SidebarGroupContent className="">
+     
+        <SidebarMenu className="flex flex-col gap-2">
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton className="w-[217px] h-[44px] pt-[12px] pb-[12px] pl-[12px] pr-[8px] rounded-[8px] " tooltip={item.title}>
-                {item.icon && <item.icon />}
-                <span>{item.title}</span>
+              <SidebarMenuButton className="w-[217px] h-[44px] pt-[12px] pb-[12px] pl-[12px] pr-[8px] rounded-[8px] gap-2.5 hover:bg-[#AEE485] hover:text-black" tooltip={item.title}>
+                <img
+                  src={item.icon}
+                  alt={item.title}
+                  width={20}
+                  height={20}
+                />
+                <h1 className="text-[16px] font-medium ">{item.title}</h1>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}

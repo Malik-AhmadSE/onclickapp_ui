@@ -44,27 +44,32 @@ const data = {
     {
       title: "Dashboard",
       url: "#",
-      icon: IconDashboard,
+      icon: "/Star.svg",
     },
     {
-      title: "Lifecycle",
+      title: "AI ChatBot",
       url: "#",
-      icon: IconListDetails,
+      icon: "/chat-icon.svg",
     },
     {
-      title: "Analytics",
+      title: "Import  & Integrate",
       url: "#",
-      icon: IconChartBar,
+      icon: "/light.svg",
     },
     {
-      title: "Projects",
+      title: "Drafts & Review",
       url: "#",
-      icon: IconFolder,
+      icon: "/document-icon.svg",
     },
     {
-      title: "Team",
+      title: "Mails",
       url: "#",
-      icon: IconUsers,
+      icon: "/mail-icon.svg",
+    },
+    {
+      title: "Integrations",
+      url: "#",
+      icon: "/setting-icon.svg",
     },
   ],
   navClouds: [
@@ -153,7 +158,7 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar {...props}>
+    <Sidebar {...props} className="">
 
 
       <a href="#">
