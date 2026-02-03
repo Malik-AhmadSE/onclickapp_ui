@@ -12,37 +12,40 @@ import {
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "./ui/checkbox";
 import {  loginSchema, type LoginAuth } from "./schemas/schema";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
-
-  const [error , setError] = useState({});
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/chatbot";
+  
+  const [error , setError] = useState<{email?: string; password?: string}>({});
   const [loginData, setloginData] = useState({
     email: "",
     password: "",
   });
+  const router = useRouter();
 
 const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   const { name, value } = e.target;
-  setloginData((prev) => ({
-    ...prev,
-    [name]: value,
-  }));
+  const updatedData = { ...loginData, [name]: value };
+  setloginData(updatedData);
  
-  const results = loginSchema.safeParse(loginData);
+  const results = loginSchema.safeParse(updatedData);
   setError((prev) => ({
     ...prev,
-    [name]: results.success ? "" : results.error.issues[0].message,
+    [name]: results.success ? "" : results.error.issues.find(i => i.path[0] === name)?.message || "",
   }));
 };
   
 
 
 
-  const handleSubmit =  (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit =  async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const result = loginSchema.safeParse(loginData);
 
@@ -58,7 +61,23 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 }
 
     setError({});
-    console.log("Validated Data:", result.data);
+    console.log("[LOGIN] Starting sign in, callbackUrl:", callbackUrl);
+    const res = await signIn("credentials", {
+      redirect: false,
+      email: loginData.email,
+      password: loginData.password,
+      callbackUrl,
+    });
+    console.log("[LOGIN] signIn response:", res);
+
+    if (res?.ok) {
+      console.log("[LOGIN] Success, redirecting to:", callbackUrl);
+      router.push(callbackUrl);
+      router.refresh();
+    } else {
+      console.log("[LOGIN] Failed:", res?.error);
+      setError((prev) => ({ ...prev, password: "Invalid email or password" }));
+    }
   }
   return (
     <form onSubmit={handleSubmit} className={cn(" lg:w-132 sm:w-120 w-xs", className)} {...props}>
@@ -75,6 +94,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
           <Input
             id="email"
             type="email"
+            name="email"
             placeholder="Enter your email"
             required
             className="bg-[#F3F3F3] border-none"
@@ -91,6 +111,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
            <Input
             id="password"
             type="password"
+            name="password"
             placeholder="Enter your password"
             required
             className="bg-[#F3F3F3]  border-none"
