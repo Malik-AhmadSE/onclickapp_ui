@@ -1,11 +1,18 @@
-import MassageBox  from "./massage-box";
+import { ChatButtons } from "./chat-buttons";
+import MassageBox from "./massage-box";
 
 export function MessageBubble() {
-    return (
-        <div className="2xl:w-[815px] xl:w-[745px] w-[515px] h-full flex justify-center items-end">
-           <div className="2xl:w-[751px] xl:w-[600px] w-[475px] h-[230px] flex flex-col justify-between pb-6">
-             <MassageBox/>
-           </div>
-        </div>
-    )
-}
+  return (
+    <div className="max-w-full h-full flex flex-col justify-center items-center">
+      <div className="flex-1 ">
+
+      </div>
+      <div className="w-full mb-10  ">
+        <MassageBox />
+        <ChatButtons />
+      </div>
+
+
+    </div>
+  )
+} 
