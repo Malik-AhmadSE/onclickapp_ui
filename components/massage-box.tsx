@@ -4,7 +4,7 @@ import { Textarea } from "./ui/textarea";
 export default function MassageBox(){
     return(
         
-            <div className="rounded-2xl bg-white shadow-2xl w-[751px] h-[150px] p-4">
+            <div className="rounded-2xl bg-white shadow-2xl  p-4">
          <div>
              <Textarea
                 placeholder="Type your message..."

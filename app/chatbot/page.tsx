@@ -25,12 +25,12 @@ export default function Page() {
                 <SiteHeader />
 
 
-                <div className="flex   justify-between gap-4 text-black">
+                <div className="flex gap-4 text-black">
 
                     <MessageBubble />
 
                     <RightBar />
-
+ 
                 </div>
             </SidebarInset>
         </SidebarProvider >
