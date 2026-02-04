@@ -35,6 +35,49 @@ async function ensureUsersTable(): Promise<void> {
   `);
 }
 
+// Check if users table has any records
+async function isUsersTableEmpty(): Promise<boolean> {
+  try {
+    const result = await query(`SELECT COUNT(*) as count FROM users`);
+    return parseInt(result.rows[0].count) === 0;
+  } catch {
+    return true; // Table doesn't exist, treat as empty
+  }
+}
+
+// Seed a dummy admin user if table is empty
+async function seedDummyUserIfEmpty(): Promise<void> {
+  const isEmpty = await isUsersTableEmpty();
+  if (isEmpty) {
+    try {
+      await createUser("admin@example.com", "admin123", "admin");
+      console.log("[DB] Seeded dummy admin user: admin@example.com / admin123");
+    } catch (error: any) {
+      // Ignore duplicate key errors (user already exists)
+      if (error?.code !== "23505") {
+        console.error("[DB] Failed to seed dummy user:", error?.message);
+      }
+    }
+  }
+}
+
+// Initialize database: create table and seed dummy user if needed
+// Call this on app startup
+let dbInitialized = false;
+export async function initializeDatabase(): Promise<void> {
+  if (dbInitialized) return;
+
+  try {
+    await ensureUsersTable();
+    await seedDummyUserIfEmpty();
+    dbInitialized = true;
+    console.log("[DB] Database initialized successfully");
+  } catch (error: any) {
+    console.error("[DB] Database initialization failed:", error?.message);
+    throw error;
+  }
+}
+
 function isTableNotExistError(error: any): boolean {
   // Check for PostgreSQL "relation does not exist" error
   if (error?.code === "42P01") return true;

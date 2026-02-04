@@ -1,8 +1,15 @@
 import { GalleryVerticalEnd } from "lucide-react";
+import { redirect } from "next/navigation";
+import { auth } from "@/module/(auth)/login/lib/auth";
 import { LoginForm } from "@/module/(auth)/login/login";
 import { loginPageContent } from "@/module/(auth)/login/data/login.data";
 
-export default function LoginPage() {
+export default async function LoginPage() {
+  const session = await auth();
+  if (session?.user) {
+    redirect("/chatbot");
+  }
+
   const { hero } = loginPageContent;
   return (
     <div className="grid min-h-svh lg:grid-cols-2 ">

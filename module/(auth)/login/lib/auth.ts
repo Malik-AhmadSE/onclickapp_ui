@@ -1,7 +1,10 @@
 import NextAuth, { type NextAuthOptions, type User as NextAuthUser } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
-import { getUserByEmail, createUser } from "@/shared/lib/db";
+import { getUserByEmail, initializeDatabase } from "@/shared/lib/db";
+
+// Initialize database on module load (runs once on server startup)
+initializeDatabase().catch(console.error);
 
 if (!process.env.NEXTAUTH_SECRET) {
   throw new Error("NEXTAUTH_SECRET is required. Set it in .env.local");
@@ -22,7 +25,7 @@ export const authConfig: NextAuthOptions = {
     updateAge: 24 * 60 * 60, // 24 hours
   },
   jwt: {
-    maxAge: 30 * 24 * 60 * 60, // 30 days
+    maxAge: 30 * 24 * 60 * 60,
   },
   cookies: {
     sessionToken: {
@@ -53,11 +56,11 @@ export const authConfig: NextAuthOptions = {
         const rateLimitKey = `rate_limit:${email}`;
         // In production, use Redis or similar for rate limiting
 
-        let user = await getUserByEmail(email);
+        const user = await getUserByEmail(email);
 
+        // User must exist in database (created via registration or seeding)
         if (!user) {
-          // Auto-create user with default role 'user'
-          user = await createUser(email, password, "user");
+          return null;
         }
 
         if (!user) return null;
@@ -131,12 +134,15 @@ export const authConfig: NextAuthOptions = {
   },
 };
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
-  ...authConfig,
-  secret: process.env.NEXTAUTH_SECRET,
-});
+import { getServerSession } from "next-auth";
 
-// Type extensions
+export async function auth() {
+  return await getServerSession(authConfig);
+}
+
+const handler = NextAuth(authConfig);
+
+
 declare module "next-auth" {
   interface Session {
     user: {
