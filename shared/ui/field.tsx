@@ -3,8 +3,8 @@
 import { useMemo } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 
-import { cn } from "@/lib/utils"
-import { Label } from "@/components/ui/label"
+import { cn } from "@/shared/lib/utils"
+import { Label } from "@/shared/ui/label"
 
 
 function FieldSet({ className, ...props }: React.ComponentProps<"fieldset">) {
@@ -170,7 +170,7 @@ function FieldSeparator({
       )}
       {...props}
     >
-     
+
       {children && (
         <span
           className="bg-background text-muted-foreground relative mx-auto block w-fit px-2"
