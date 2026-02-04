@@ -19,14 +19,14 @@ import {
   IconUsers,
 } from "@tabler/icons-react"
 
-import { NavMain } from "@/components/nav-main"
+import { NavMain } from "@/shared/nav-main"
 
 
 import {
   Sidebar,
   SidebarContent,
 
-} from "@/components/ui/sidebar"
+} from "@/shared/ui/sidebar"
 import Image from "next/image"
 
 const data = {

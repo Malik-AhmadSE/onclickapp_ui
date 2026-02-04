@@ -1,10 +1,6 @@
 import * as React from "react"
 
-<<<<<<< HEAD:components/ui/input.tsx
-import { cn } from "@/lib/utils"
-=======
 import { cn } from "@/shared/lib/utils"
->>>>>>> d4a65246a98b6601cb26fee6ec555bf3fc349fe1:shared/ui/input.tsx
 
 function Input({ className, type, ...props }: React.ComponentProps<"input">) {
   return (

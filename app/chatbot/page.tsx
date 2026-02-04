@@ -1,11 +1,11 @@
-import { RightBar } from "@/components/app-rightbar"
-import { AppSidebar } from "@/components/app-sidebar"
-import { MessageBubble } from "@/components/message-bubble"
-import { SiteHeader } from "@/components/site-header"
+import { RightBar } from "@/shared/app-rightbar"
+import { AppSidebar } from "@/shared/app-sidebar"
+import { MessageBubble } from "@/shared/message-bubble"
+import { SiteHeader } from "@/shared/site-header"
 import {
     SidebarInset,
     SidebarProvider,
-} from "@/components/ui/sidebar"
+} from "@/shared/ui/sidebar"
 
 
 

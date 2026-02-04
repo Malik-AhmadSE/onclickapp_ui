@@ -2,14 +2,14 @@
 
 import { IconCirclePlusFilled, IconMail, type Icon } from "@tabler/icons-react"
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/shared/ui/button"
 import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
+} from "@/shared/ui/sidebar"
 
 export function NavMain({
   items,
@@ -23,7 +23,7 @@ export function NavMain({
   return (
     <SidebarGroup>
       <SidebarGroupContent className="">
-     
+
         <SidebarMenu className="flex flex-col gap-2 2xl:w-[225px] w-[200px]">
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
