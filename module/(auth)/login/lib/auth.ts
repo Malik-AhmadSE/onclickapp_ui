@@ -1,7 +1,7 @@
 import NextAuth, { type NextAuthOptions, type User as NextAuthUser } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
-import { getUserByEmail, createUser } from "@/lib/db";
+import { getUserByEmail, createUser } from "@/shared/lib/db";
 
 if (!process.env.NEXTAUTH_SECRET) {
   throw new Error("NEXTAUTH_SECRET is required. Set it in .env.local");
@@ -26,8 +26,8 @@ export const authConfig: NextAuthOptions = {
   },
   cookies: {
     sessionToken: {
-      name: process.env.NODE_ENV === "production" 
-        ? "__Secure-next-auth.session-token" 
+      name: process.env.NODE_ENV === "production"
+        ? "__Secure-next-auth.session-token"
         : "next-auth.session-token",
       options: {
         httpOnly: true,

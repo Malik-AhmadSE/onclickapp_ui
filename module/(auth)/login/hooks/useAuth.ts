@@ -4,7 +4,6 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useCallback } from "react";
 
-// Enterprise-level auth hook with role checking
 export function useAuth(requiredRole?: string) {
   const { data: session, status, update } = useSession();
   const router = useRouter();
@@ -13,7 +12,6 @@ export function useAuth(requiredRole?: string) {
   const isAuthenticated = status === "authenticated";
   const isUnauthenticated = status === "unauthenticated";
 
-  // Check if user has required role
   const hasRole = useCallback(
     (role: string): boolean => {
       if (!session?.user?.role) return false;

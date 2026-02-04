@@ -1,4 +1,4 @@
-import { auth } from "@/lib/auth";
+import { auth } from "@/module/(auth)/login/lib/auth";
 import { NextRequest, NextResponse } from "next/server";
 
 // Enterprise-level API route protection
