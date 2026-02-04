@@ -7,8 +7,7 @@ export function RightBar() {
     return (
         <aside className="flex flex-col border-l border-[#E2E8F0] w-full h-full
     max-w-[280px]
-    lg:max-w-[280px]
-    xl:max-w-[320px]">
+    ">
             <div className="flex-1 border-b border-[#E2E8F0] flex flex-col min-h-0">
 
                 <div className="flex items-center justify-between px-6 py-4 shrink-0">
@@ -20,7 +19,7 @@ export function RightBar() {
 
                 <div className="flex-1 overflow-y-auto min-h-0">
                     {RecentChats.map((chat, index) => (
-                        <div key={index} className="py-[16px] px-3">
+                        <div key={index} className="py-4 px-3">
                             <div className="flex items-center gap-4 min-w-0">
                                 <p className="flex-1 min-w-0 line-clamp-1 text-[10px] xl:text-[13px] 2xl:text-[15px]">
                                     {chat.title}
