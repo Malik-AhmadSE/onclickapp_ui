@@ -9,7 +9,7 @@ export default function LoginFormFields({
 }: LoginFormFieldsProps) {
     return (
         <div className="flex flex-col gap-6">
-            {fields.map(({ id, label, type, placeholder, autoComplete, required, name }) => (
+            {fields.map(({ id, label, type, placeholder, autoComplete, required, name ,rightIcon}) => (
                 <BaseInput
                     key={id}
                     id={id}
@@ -23,6 +23,7 @@ export default function LoginFormFields({
                     name={name}
                     autoComplete={autoComplete}
                     className="p-5"
+                    rightIcon={rightIcon}
                 />
             ))}
         </div>
