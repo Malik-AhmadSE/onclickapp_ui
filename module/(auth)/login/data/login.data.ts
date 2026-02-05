@@ -19,6 +19,7 @@ export const loginFormConfig: { fields: LoginFormField[] } = {
             placeholder: "Enter your password",
             autoComplete: "current-password",
             required: true,
+            rightIcon: "/eye.svg",
 
         },
 

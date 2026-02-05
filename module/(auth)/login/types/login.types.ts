@@ -7,6 +7,8 @@ export interface LoginFormField {
     placeholder: string;
     autoComplete: string;
     required: boolean;
+    rightIcon?: string;
+    leftIcon?: string;
 }
 
 export interface LoginFormConfig {
@@ -31,4 +33,5 @@ export interface LoginFormFieldsProps {
     formData: import("../schemas/schema").LoginValidator;
     errors: Partial<Record<keyof import("../schemas/schema").LoginValidator, string>>;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    
 }

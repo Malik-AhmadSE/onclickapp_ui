@@ -83,9 +83,9 @@ function isTokenExpired(token: any): boolean {
   return Date.now() >= expirationTime;
 }
 
-// Match all routes except static files
+// Match all routes except static files and common public assets
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico).*)",
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)",
   ],
 };
