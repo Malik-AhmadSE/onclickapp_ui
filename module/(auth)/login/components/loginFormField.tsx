@@ -22,7 +22,7 @@ export default function LoginFormFields({
                     required={required}
                     name={name}
                     autoComplete={autoComplete}
-                    className="p-5"
+                    className="py-6"
                     rightIcon={rightIcon}
                 />
             ))}
