@@ -1,49 +1,94 @@
+'use client';
+
+import { useChatStore } from "@/store/chat.store";
 import { ChatButtons } from "./chat-buttons";
 import MassageBox from "./massage-box";
-import UserData from "@/data/userData";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { ThinkingAccordion } from "./ThinkingAccordion";
 
 export function MessageBubble() {
+  const { messages } = useChatStore();
+
   return (
-    <div className="max-w-full h-full flex flex-col items-center justify-center ">
-      <div className="flex-1 p-6 w-full overflow-y-auto flex flex-col gap-4 ">
-          <div className="flex items-center gap-2 ">
-            <div className="w-10 h-10 rounded-full bg-[#AEE485] flex items-center justify-center text-white font-bold">AI</div>
-            <div className="bg-white rounded-full border border-[#E2E8F0] p-2 ">
-              <p className="text-[14px]">Hello! I’m your personal AI Assistant.</p>
-            </div>
+    <div className="max-w-full h-full flex flex-col items-center justify-center">
+      <div className="flex-1 p-6 w-full overflow-y-auto flex flex-col gap-4">
+        {/* Welcome message */}
+        <div className="flex items-center gap-2">
+          <div className="w-10 h-10 rounded-full bg-[#AEE485] flex items-center justify-center text-white font-bold">
+            AI
           </div>
-          <div className="flex justify-end-safe gap-2 mt-4 ">
-            <div className="bg-[#084F49] rounded-xl p-4 text-white max-w-103 w-full ">
-              <div className="bg-[#074641] flex border border-[#075F58] p-2 rounded-lg justify-between">
-                <div>
-                  <p className="text-[white]">External Link Title </p>
-                  <p className="text-[12px] text-[#FFFFFFA3]">External link description</p>
-                </div>
-                <img src="/LinkSimple.svg" alt="" />
+          <div className="bg-white rounded-full border border-[#E2E8F0] p-2">
+            <p className="text-[14px]">Hello! I'm your personal AI Assistant.</p>
+          </div>
+        </div>
+
+        {/* Real messages from store */}
+        {messages.map((message) => (
+          <div
+            key={message.id}
+            className={`flex items-start gap-2 ${message.role === 'user' ? 'justify-end' : ''}`}
+          >
+            {/* Assistant avatar */}
+            {message.role === 'assistant' && (
+              <div className="w-10 h-10 rounded-full bg-[#AEE485] flex items-center justify-center text-white font-bold shrink-0">
+                AI
               </div>
-             <div className="mt-2 flex justify-between items-center">
-               <h1 className="text-[14px]">https://www.externallink.com</h1>
-               <p className="text-[10px]">01:25</p>
-             </div>
+            )}
+
+            {/* Message content */}
+            <div className={`${message.role === 'user'
+              ? 'bg-[#084F49] text-white'
+              : 'bg-white border border-[#E2E8F0]'
+              } rounded-xl p-4 max-w-md`}>
+
+              {/* Thinking Accordion - only for assistant messages */}
+              {message.role === 'assistant' && message.thinking && message.thinking.length > 0 && (
+                <ThinkingAccordion
+                  thinking={message.thinking}
+                  isActive={message.isTyping || false}
+                />
+              )}
+
+              {/* Typing indicator */}
+              {message.isTyping && message.content === '' ? (
+                <div className="flex gap-1">
+                  <span className="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: '0ms' }}></span>
+                  <span className="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                  <span className="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                </div>
+              ) : (
+                <>
+                  {message.role === 'user' ? (
+                    <p className="text-[14px] whitespace-pre-wrap">{message.content}</p>
+                  ) : (
+                    <div className="prose prose-sm max-w-none prose-p:text-[14px] prose-p:my-1">
+                      <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                        {message.content}
+                      </ReactMarkdown>
+                    </div>
+                  )}
+                  <p className={`text-[10px] mt-2 ${message.role === 'user' ? 'text-white/70' : 'text-gray-500'}`}>
+                    {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  </p>
+                </>
+              )}
             </div>
-            <div>
-              {
-                UserData.map((user,index)=>(
-                  <div key={index}>
-                    <img src={user.image} alt="" />
-                  </div>
-                ))
-              }
-            </div>
-            
+
+            {/* User avatar */}
+            {message.role === 'user' && (
+              <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold shrink-0">
+                U
+              </div>
+            )}
           </div>
+        ))}
       </div>
-      <div className=" mb-10 min-w-0 ">
-        <MassageBox  />
+
+      <div className="mb-10 min-w-0">
+        <MassageBox />
         <ChatButtons />
       </div>
-      
-
     </div>
-  )
+  );
 } 
