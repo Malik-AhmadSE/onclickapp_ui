@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useState } from "react"
 import {
   IconCamera,
   IconDatabase,
@@ -147,6 +148,18 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const [activeItem, setActiveItem] = useState("AI ChatBot")
+
+  const handleItemClick = (title: string) => {
+    setActiveItem(title)
+  }
+
+  // Map items with dynamic isActive based on state
+  const navMainWithActive = data.navMain.map(item => ({
+    ...item,
+    isActive: item.title === activeItem
+  }))
+
   return (
     <Sidebar {...props} className="">
 
@@ -156,7 +169,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </a>
 
       <SidebarContent className="relative w-[225px] h-[308px] top-[141px] left-[14px]">
-        <NavMain items={data.navMain} />
+        <NavMain items={navMainWithActive} onItemClick={handleItemClick} />
       </SidebarContent>
 
     </Sidebar>
