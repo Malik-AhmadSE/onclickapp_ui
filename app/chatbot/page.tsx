@@ -20,14 +20,14 @@ export default function Page() {
             }
         >
             <AppSidebar variant="inset" />
-            <SidebarInset className="bg-[#F8F8F8] @container min-h-screen">
+            <SidebarInset className="bg-[#F8F8F8] @container flex flex-col h-screen overflow-hidden">
 
                 <SiteHeader />
 
 
-                <div className="flex justify-between  text-black  flex-1">
+                <div className="flex justify-between text-black flex-1 overflow-hidden">
 
-                    <div className="flex-1">
+                    <div className="flex-1 flex flex-col overflow-hidden">
                         <MessageBubble />
                     </div>
 

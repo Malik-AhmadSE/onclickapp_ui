@@ -11,8 +11,8 @@ export function MessageBubble() {
   const { messages } = useChatStore();
 
   return (
-    <div className="max-w-full h-full flex flex-col items-center justify-center">
-      <div className="flex-1 p-6 w-full overflow-y-auto flex flex-col gap-4">
+    <div className="max-w-full h-full flex flex-col items-center justify-center overflow-hidden">
+      <div className="flex-1 p-6 w-full overflow-y-auto scrollbar-hide flex flex-col gap-4">
         {/* Welcome message */}
         <div className="flex items-center gap-2">
           <div className="w-10 h-10 rounded-full bg-[#AEE485] flex items-center justify-center text-white font-bold">
