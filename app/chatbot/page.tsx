@@ -20,7 +20,7 @@ export default function Page() {
             }
         >
             <AppSidebar variant="inset" />
-            <SidebarInset className="bg-[#F8F8F8] @container flex flex-col h-screen overflow-hidden">
+            <SidebarInset className="bg-[#F8F8F8]  flex flex-col h-screen overflow-hidden">
 
                 <SiteHeader />
 

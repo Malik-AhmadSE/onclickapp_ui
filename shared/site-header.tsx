@@ -1,8 +1,8 @@
-import UserData from "../data/userData"
+import UserData from "../garbadge/userData"
 
 export function SiteHeader() {
   return (
-    <header className="flex h-[64px] shrink-0 items-center gap-2 bg-white border-b border-[#E2E8F0] bg-foreground rounded-tl-lg rounded-tr-lg transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height) ">
+    <header className="flex h-[64px] shrink-0 items-center gap-2 bg-white border-b  bg-foreground rounded-tl-lg rounded-tr-lg transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height) ">
       <div className="flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-6">
 
 

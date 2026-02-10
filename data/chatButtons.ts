@@ -17,10 +17,5 @@ const ChatButtonsData = [
         icon: "/lightbulb.svg"
 
     },
-    {
-        id: 4,
-        title: "Export as CSV",
-        icon: "/documentcode.svg"
-    },
 ]
 export default ChatButtonsData

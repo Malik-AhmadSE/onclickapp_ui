@@ -22,6 +22,7 @@ export const loginFormConfig: { fields: LoginFormField[] } = {
             rightIcon: "/eye.svg",
 
         },
+        
 
 
     ],

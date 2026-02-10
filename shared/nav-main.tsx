@@ -26,7 +26,7 @@ export function NavMain({
     <SidebarGroup>
       <SidebarGroupContent className="">
 
-        <SidebarMenu className="flex flex-col gap-2 2xl:w-[225px] w-[200px]">
+        <SidebarMenu className="flex flex-col gap-2 z-50 2xl:w-[210px] w-[200px]">
           {items.map((item) => (
             <SidebarMenuItem key={item.title} className="group/item">
               <SidebarMenuButton
