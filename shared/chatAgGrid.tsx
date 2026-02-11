@@ -1,12 +1,14 @@
 "use client";
 
 import { AgGridReact } from "ag-grid-react";
-import { ModuleRegistry, AllCommunityModule } from "ag-grid-community";
+import { ModuleRegistry, AllCommunityModule, ColDef } from "ag-grid-community";
+import { ColumnMenuModule } from "ag-grid-enterprise";
 
-// ✅ REGISTER MODULES (THIS FIXES ERROR #272)
-ModuleRegistry.registerModules([AllCommunityModule]);
-
-import { ColDef } from "ag-grid-community";
+// ✅ REQUIRED for 3-dot menu in v31+
+ModuleRegistry.registerModules([
+  AllCommunityModule,
+  ColumnMenuModule,
+]);
 
 type Props = {
   rowData: any[];
@@ -29,16 +31,14 @@ export default function ChatAgGrid({
         pagination
         paginationPageSize={10}
         animateRows
+        columnMenu="legacy"   // ✅ shows ⋮ menu
         defaultColDef={{
           floatingFilter: true,
           filter: true,
           resizable: true,
           sortable: true,
-         
         }}
-        suppressMenuHide={false} // optional, ensures menu is visible on hover
       />
-
     </div>
   );
 }

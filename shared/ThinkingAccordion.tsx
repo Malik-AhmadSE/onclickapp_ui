@@ -39,9 +39,7 @@ export function ThinkingAccordion({ thinking, isActive }: ThinkingAccordionProps
                 }}
                 className="flex cursor-pointer items-center gap-2 px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 list-none"
             >
-                <span className="text-sm">
-                    {isActive ? '⚡' : '✓'}
-                </span>
+                
                 <span className="flex-1">
                     {isActive ? 'Thinking...' : 'Finished Thinking'}
                 </span>
