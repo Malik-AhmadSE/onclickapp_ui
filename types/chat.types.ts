@@ -10,6 +10,9 @@ export interface Message {
     thinking?: ThinkingStep[];
     actionButtons?: ActionButton[];
     isTyping?: boolean;
+     type?: 'text' | 'table';
+  tableData?: any[];
+  columnDefs?: any[];
 }
 
 export interface ThinkingStep {

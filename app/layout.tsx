@@ -4,6 +4,9 @@ import "./globals.css";
 import { ThemeProvider } from "@/shared/theme/theme-provider"
 import Providers from "@/shared/providers";
 import AppToaster from "@/shared/core/appToaster";
+
+
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
