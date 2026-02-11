@@ -4,7 +4,7 @@ import { AgGridReact } from "ag-grid-react";
 import { ModuleRegistry, AllCommunityModule, ColDef } from "ag-grid-community";
 import { ColumnMenuModule } from "ag-grid-enterprise";
 
-// ✅ REQUIRED for 3-dot menu in v31+
+// REQUIRED for 3-dot menu in v31+
 ModuleRegistry.registerModules([
   AllCommunityModule,
   ColumnMenuModule,
@@ -31,7 +31,8 @@ export default function ChatAgGrid({
         pagination
         paginationPageSize={10}
         animateRows
-        columnMenu="legacy"   // ✅ shows ⋮ menu
+        columnMenu="new"   //  shows ⋮ menu
+        
         defaultColDef={{
           floatingFilter: true,
           filter: true,
