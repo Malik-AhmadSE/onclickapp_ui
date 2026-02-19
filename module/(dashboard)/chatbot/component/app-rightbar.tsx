@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import RecentChats from "@/garbadge/recentChat";
 import ChatFiles from "@/garbadge/chatfiles";
-import { Sidebar, SidebarContent, SidebarGroup } from "./ui/sidebar";
+
 
 
 export function RightBar() {
@@ -27,7 +27,7 @@ export function RightBar() {
                 </div>
 
                 {isOpen && (
-                    <div className="flex-1 overflow-y-auto min-h-0">
+                    <div className="flex-1 overflow-y-auto min-h-0 scrollbar-hide">
                         {RecentChats.map((chat, index) => (
                             <div key={index} className="py-4 px-3">
                                 <div className="flex items-center gap-4 min-w-0">
@@ -56,7 +56,7 @@ export function RightBar() {
 
                {
                 isOpenChatFile && (
-                     <div className="flex-1 overflow-y-auto w-full flex flex-col">
+                     <div className="flex-1 overflow-y-auto w-full flex flex-col scrollbar-hide">
                     {ChatFiles.map((chat, index) => (
 
                         <div key={index} className="flex items-center py-[16px] px-3 gap-8">

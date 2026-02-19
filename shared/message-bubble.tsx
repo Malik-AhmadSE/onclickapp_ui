@@ -1,12 +1,12 @@
 "use client";
 
 import { useChatStore } from "@/store/chat.store";
-import { ChatButtons } from "./chat-buttons";
+import { ChatButtons } from "../module/(dashboard)/chatbot/component/chat-buttons";
 import MassageBox from "./massage-box";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { ThinkingAccordion } from "./ThinkingAccordion";
-import ChatAgGrid from "./chatAgGrid";
+import ChatAgGrid from "../module/(dashboard)/chatbot/component/chatAgGrid";
 import { parseMarkdownTable } from "./utils/parseTable";
 
 export function MessageBubble() {
@@ -17,9 +17,9 @@ export function MessageBubble() {
     if (message.content.includes("|")) {
       const { columnDefs, rowData } = parseMarkdownTable(message.content);
       return (
-       <div className="w-full overflow-x-auto">
+       <div className="w-full scrollbar-hide overflow-x-auto">
          <ChatAgGrid
-          className="min-w-200 h-auto"
+          className="min-w-200  scrollbar-hide overflow-x-auto"
           columnDefs={columnDefs}
           rowData={rowData}
         />

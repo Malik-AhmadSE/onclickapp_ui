@@ -20,22 +20,22 @@ export function NavMain({
     icon: string
     isActive?: boolean
   }[]
-  onItemClick?: (title: string) => void
+  onItemClick?: (title: string, url?: string) => void
 }) {
   return (
     <SidebarGroup>
       <SidebarGroupContent className="">
 
-        <SidebarMenu className="flex flex-col gap-2 z-50 2xl:w-[210px] w-[200px]">
+        <SidebarMenu className="flex flex-col gap-2 z-50 2xl:w-[210px] w-50">
           {items.map((item) => (
             <SidebarMenuItem key={item.title} className="group/item">
               <SidebarMenuButton
-                className={`h-11 pt-3 pb-3 pl-3 pr-2 rounded-[8px] gap-2.5 hover:text-black hover:bg-[#AEE485] ${item.isActive
+                className={`h-11 pt-3 pb-3 pl-3 pr-2 rounded-xl gap-2.5 hover:text-black hover:bg-[#AEE485] ${item.isActive
                   ? 'bg-[#AEE485] text-black'
                   : 'text-white'
                   }`}
                 tooltip={item.title}
-                onClick={() => onItemClick?.(item.title)}
+                onClick={() => onItemClick?.(item.title, item.url)}
               >
                 <img
                   src={item.icon}
