@@ -3,10 +3,10 @@
 export default function ImportHeader (){
     return(
        
-  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mx-auto">
+  <div className="flex md:flex-row flex-col gap-8 mx-auto w-full">
     
    
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-4 h-auto">
+    <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-4 h-auto w-[70%]">
       
       <h2 className="2xl:text-2xl text-xl font-semibold text-gray-800 mb-4">
         Upload Files
@@ -30,7 +30,7 @@ export default function ImportHeader (){
     </div>
 
   
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-4 col-span-2">
+    <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-4 w-[100%]">
       
      
       <div className="flex items-center justify-between mb-4">
