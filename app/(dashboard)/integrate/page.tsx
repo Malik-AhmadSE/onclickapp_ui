@@ -1,10 +1,6 @@
-import { DataTable } from "@/shared/data-table";
-import {  columns } from "@/shared/columns";
-
-import ImportHeader from "@/shared/importHeader";
-import { ImportHistory } from "@/shared/importHistory";
-import HistoryData from "../../../garbadge/historyData";
-
+import { ImportPending } from "@/module/(dashboard)/imports/components/importPending";
+import ImportHeader from "@/module/(dashboard)/imports/components/importHeader";
+import { ImportHistory } from "@/module/(dashboard)/imports/components/importHistory";
 
 export default function Page() {
   return (
@@ -12,8 +8,8 @@ export default function Page() {
        <div className="mb-10">
          <ImportHeader/>
        </div>
-      <DataTable  data={HistoryData} />
-      <ImportHistory columns={columns} data={HistoryData}/>
+      <ImportPending  />
+      <ImportHistory />
     </div>
   )
 }

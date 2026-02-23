@@ -1,6 +1,6 @@
 import { RightBar } from "../../../module/(dashboard)/chatbot/component/app-rightbar"
 
-import { MessageBubble } from "@/shared/message-bubble"
+import { MessageBubble } from "@/module/(dashboard)/chatbot/component/message-bubble"
 
 
 

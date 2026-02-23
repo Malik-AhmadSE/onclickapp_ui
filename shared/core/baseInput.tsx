@@ -38,9 +38,8 @@ export default function BaseInput({
 
       <div className="relative">
         {leftIcon && (
-          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
-            {leftIcon}
-          </span>
+          <img src={`${leftIcon}`} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+
         )}
 
         <Input
