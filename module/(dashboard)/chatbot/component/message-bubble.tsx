@@ -2,7 +2,7 @@
 
 import { useChatStore } from "@/store/chat.store";
 import { ChatButtons } from "./chat-buttons";
-import MassageBox from "@/shared/massage-box";
+import MassageBox from "./massage-box";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { ThinkingAccordion } from "../../../../shared/ThinkingAccordion";

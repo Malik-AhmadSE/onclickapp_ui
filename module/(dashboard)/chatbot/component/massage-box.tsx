@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useRef } from "react";
-import { Button } from "./ui/button";
-import { Textarea } from "./ui/textarea";
+import { Button } from "@/shared/ui/button";
+import { Textarea } from "@/shared/ui/textarea";
 import { useChatStore } from "@/store/chat.store";
 import { sendChatMessage, uploadDocument } from "@/lib/chat-api";
 

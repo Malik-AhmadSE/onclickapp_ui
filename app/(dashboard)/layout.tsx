@@ -1,5 +1,5 @@
 import { SidebarProvider, SidebarInset } from "@/shared/ui/sidebar"
-import { AppSidebar } from "@/module/(dashboard)/chatbot/component/app-sidebar"
+import { AppSidebar } from "@/shared/app-sidebar"
 import { SiteHeader } from "@/shared/site-header"
 
 export default function DashboardLayout({
