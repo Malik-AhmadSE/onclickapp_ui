@@ -1,7 +1,9 @@
+import { FullHistory } from "@/module/(dashboard)/imports/importHistory/fullHistoryTable";
+
 export default function History(){
     return(
-        <div>
-            history page
+        <div className="w-full">
+        <FullHistory/>
         </div>
     )
 }

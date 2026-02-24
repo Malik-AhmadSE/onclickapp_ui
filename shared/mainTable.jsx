@@ -10,11 +10,8 @@ import {
   TableRow,
 } from "@/shared/ui/table"
 import {
-  ColumnDef,
   flexRender,
-  getCoreRowModel,
-  getFilteredRowModel,
-  useReactTable,
+  
 } from "@tanstack/react-table"
 
 export default function MainTable({table}){
