@@ -61,7 +61,7 @@ export default function MassageBox() {
         // Add user message with file
         addMessage({
           id: `${Date.now()}_user`,
-          content: `📄 **${file.name}**${message ? `\n\n${message}` : ''}`,
+          content: ` ${file.name} ${message ? `\n\n${message}` : ''}`,
           role: 'user',
           timestamp: new Date(),
         });
@@ -80,7 +80,7 @@ export default function MassageBox() {
         // Upload file first
         addThinkingStep(botMsgId, 'Uploading file...');
         const uploadRes = await uploadDocument(file.file, sessionId);
-        addThinkingStep(botMsgId, `✓ Uploaded ${uploadRes.filename}`);
+        addThinkingStep(botMsgId, `Uploaded ${uploadRes.filename}`);
 
         // Then send message with file context
         const prompt = message || `Process the document I just uploaded: ${uploadRes.filename}`;
@@ -142,7 +142,7 @@ export default function MassageBox() {
       console.error('Chat error:', error);
       addMessage({
         id: `${Date.now()}_error`,
-        content: `❌ Error: ${error.message}`,
+        content: ` Error: ${error.message}`,
         role: 'assistant',
         timestamp: new Date(),
       });
