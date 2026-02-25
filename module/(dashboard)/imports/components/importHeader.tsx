@@ -1,5 +1,7 @@
 "use client"
 import { useRef, useState } from "react"
+import { AccountingSoftware, ImportAccountingData } from "./data/importAccountingData"
+import { Button } from "@/shared/ui/button"
 
 export default function ImportHeader() {
   const [files, setFiles] = useState<File[]>([])
@@ -77,73 +79,47 @@ export default function ImportHeader() {
           </div>
         )}
       </div>
-
-
       <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-4 w-[100%]">
+        {
+          ImportAccountingData.map((item, index) => (
+            <div key={index} className="flex items-center justify-between mb-4">
+              <h2 className="2xl:text-2xl text-xl font-semibold text-gray-800">
+                {item.title}
+              </h2>
+
+              <button className="px-4 py-2 xl:text-sm text-[12px] border  border-gray-300 rounded-lg hover:bg-gray-100 transition">
+                {item.button_title}
+              </button>
 
 
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="2xl:text-2xl text-xl font-semibold text-gray-800">
-            Accounting Software Integrations
-          </h2>
-
-          <button className="px-4 py-2 xl:text-sm text-[12px] border  border-gray-300 rounded-lg hover:bg-gray-100 transition">
-            See All Integration
-          </button>
-
-
-        </div>
-
-
+            </div>
+          ))
+        }
         <div className="space-y-4">
 
+          {AccountingSoftware.map((item, index) => (
+            <div key={index} className="flex items-center justify-between p-4 border border-gray-200 rounded-xl hover:shadow-sm transition">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12  rounded-full flex items-center justify-center">
+                  <img src={item.url} alt="A" />
+                </div>
 
-          <div className="flex items-center justify-between p-4 border border-gray-200 rounded-xl hover:shadow-sm transition">
-
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12  rounded-full flex items-center justify-center">
-                <img src="quickbook.svg" alt="A" />
+                <div>
+                  <p className="font-semibold text-gray-800">{item.title}</p>
+                  <p className="text-sm text-gray-500">
+                    {item.para}
+                  </p>
+                </div>
               </div>
-
-              <div>
-                <p className="font-semibold text-gray-800">QuickBooks</p>
-                <p className="text-sm text-gray-500">
-                  Get Drafts from Quickbooks
-                </p>
-              </div>
+              <Button className="px-4 py-2 text-sm bg-green-100 text-green-700 rounded-lg font-medium hover:bg-green-200 transition">
+                   {item.button_text}
+                  <img src={item.button_url} alt="" />
+              </Button>
             </div>
-
-            <button className="px-4 py-2 text-sm bg-green-100 text-green-700 rounded-lg font-medium hover:bg-green-200 transition">
-              Connected →
-            </button>
-          </div>
-
-
-          <div className="flex items-center justify-between p-4 border border-gray-200 rounded-xl hover:shadow-sm transition">
-
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full flex items-center justify-center">
-                <img src="xero.svg" alt="" />
-              </div>
-
-              <div>
-                <p className="font-semibold text-gray-800">Xero</p>
-                <p className="text-sm text-gray-500">
-                  Get Drafts from Xero
-                </p>
-              </div>
-            </div>
-
-            <button className="px-4 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-100 transition flex items-center gap-1">
-              Connect →
-            </button>
-          </div>
-
+          ))
+          }
         </div>
       </div>
-
     </div>
-
-
   )
 }

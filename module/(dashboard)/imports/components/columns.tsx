@@ -46,7 +46,7 @@ const columns: ColumnDef<History>[] = [
         if(source==="Upload"){
           return(
             <div className="flex gap-2">
-              <img src="upload-2.svg" alt="" />
+              <img src="/upload-2.svg" alt="" />
               <p>{source}</p>
             </div>
           )
@@ -54,7 +54,7 @@ const columns: ColumnDef<History>[] = [
         else if(source==="QuickBook"){
           return(
             <div className="flex gap-2">
-              <img src="quick-2.svg" alt="" />
+              <img src="/quick-2.svg" alt="" />
               <p>{source}</p>
             </div>
           )
@@ -98,8 +98,6 @@ const columns: ColumnDef<History>[] = [
           <Button
             variant="outline"
             size="sm"
-            
-
           >
            <div className="text-[#999999] text-[12px]">
              Review Doc
