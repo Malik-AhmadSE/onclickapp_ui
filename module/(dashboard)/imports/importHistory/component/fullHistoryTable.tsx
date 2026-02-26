@@ -3,6 +3,7 @@ import {
   getCoreRowModel,
   getFilteredRowModel,
   useReactTable,
+  getPaginationRowModel
 } from "@tanstack/react-table"
 import { useState, useMemo } from "react"
 import BaseInput from "@/shared/core/baseInput"
@@ -19,6 +20,10 @@ export function FullHistory() {
   const [globalFilter, setGlobalFilter] = useState("")
   const [activeFilter, setActiveFilter] = useState("All")
   const [activeDropFilter, setDropFilter] = useState("")
+  const [pagination, setPagination] = useState({
+    pageIndex: 0,
+    pageSize: 10,
+  })
 
   // const filteredData = useMemo(() => {
   //   if (activeFilter === "All") return HistoryData
@@ -27,14 +32,14 @@ export function FullHistory() {
 
   const filteredData = useMemo(() => {
     return HistoryData.filter((item) => {
-        const matchesButton =
-            activeFilter === "All" ? true : item.source === activeFilter
-        const matchesDrop =
-            activeDropFilter === "" ? true : item.status === activeDropFilter
+      const matchesButton =
+        activeFilter === "All" ? true : item.source === activeFilter
+      const matchesDrop =
+        activeDropFilter === "" ? true : item.status === activeDropFilter
 
-        return matchesButton && matchesDrop
+      return matchesButton && matchesDrop
     })
-}, [activeFilter, activeDropFilter])
+  }, [activeFilter, activeDropFilter])
 
   const table = useReactTable({
     data: filteredData,
@@ -42,11 +47,14 @@ export function FullHistory() {
     state: {
       rowSelection,
       globalFilter,
+      pagination
     },
     onRowSelectionChange: setRowSelection,
     onGlobalFilterChange: setGlobalFilter,
+    onPaginationChange: setPagination,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
     enableRowSelection: true,
   })
 
@@ -80,17 +88,41 @@ export function FullHistory() {
             onChange={(e) => setGlobalFilter(e.target.value)}
             leftIcon={"../search-02.svg"}
           />
-          <SelectDate/>
-         <div>
-           <Button variant="outline" className="text-[#666D80] h-7 w-16 rounded-[4px]"
-          >
-            Today
-          </Button>
-         </div>
-         <FilterDropDown setDropFilter={setDropFilter}/>
+          <SelectDate />
+          <div>
+            <Button variant="outline" className="text-[#666D80] h-7 w-16 rounded-[4px]"
+            >
+              Today
+            </Button>
+          </div>
+          <FilterDropDown setDropFilter={setDropFilter} />
         </div>
       </div>
       <MainTable table={table} />
+      <div className="flex items-center justify-center space-x-2 py-4">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+        >
+          Previous
+        </Button>
+
+        <span className="text-sm">
+          Page {table.getState().pagination.pageIndex + 1} of{" "}
+          {table.getPageCount()}
+        </span>
+
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => table.nextPage()}
+          disabled={!table.getCanNextPage()}
+        >
+          Next
+        </Button>
+      </div>
     </div>
   )
 }
