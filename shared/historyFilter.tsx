@@ -1,3 +1,4 @@
+"use client"
 import {
     DropdownMenu, DropdownMenuContent,
     DropdownMenuGroup,
@@ -6,10 +7,11 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/shared/ui/dropdown-menu";
-import { DropFilterData } from "../data/dropFilterData";
+import { DropFilterData } from "../module/(dashboard)/imports/importHistory/data/dropFilterData";
 import { Button } from "@/shared/ui/button";
 
-export default function FilterDropDown({setDropFilter}) {
+
+export default function FilterDropDown({setFilter, data}) {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -22,9 +24,9 @@ export default function FilterDropDown({setDropFilter}) {
                     <DropdownMenuLabel className="text-[#666D80]">Filter by status</DropdownMenuLabel>
                     <DropdownMenuSeparator/>
                     {
-                        DropFilterData.map((item,index)=>(
+                        data.map((item,index)=>(
                                 <DropdownMenuItem
-                                onClick={()=>setDropFilter(item.title)}
+                                onClick={()=>setFilter(item.title)}
                                  key={index}>{item.title}</DropdownMenuItem>
                         ))
                     }

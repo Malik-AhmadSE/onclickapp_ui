@@ -9,14 +9,14 @@ import { useState, useMemo } from "react"
 import BaseInput from "@/shared/core/baseInput"
 import { Button } from "@/shared/ui/button"
 import MainTable from "@/shared/mainTable"
-import HistoryData from "@/garbadge/historyData"
-import columns from "../../components/columns"
-import HistoryButtonData from "../data/historyButtons"
-import FilterDropDown from "../../../../../shared/historyFilter"
-import SelectDate from "./selectDate"
-import { DropFilterData } from "../data/dropFilterData"
+import DraftData from "@/garbadge/draftData"
+import columns from "./columnsDrafts"
+import HistoryButtonData from "../../imports/importHistory/data/historyButtons"
+import FilterDropDown from "@/shared/historyFilter"
+import SelectDate from "../../imports/importHistory/component/selectDate"
+import { DraftFilterData } from "../data/draftFilterData"
 
-export function FullHistory() {
+export function DraftTable() {
   const [rowSelection, setRowSelection] = useState({})
   const [globalFilter, setGlobalFilter] = useState("")
   const [activeFilter, setActiveFilter] = useState("All")
@@ -32,7 +32,7 @@ export function FullHistory() {
   // }, [activeFilter])
 
   const filteredData = useMemo(() => {
-    return HistoryData.filter((item) => {
+    return DraftData.filter((item) => {
       const matchesButton =
         activeFilter === "All" ? true : item.source === activeFilter
       const matchesDrop =
@@ -96,7 +96,7 @@ export function FullHistory() {
               Today
             </Button>
           </div>
-          <FilterDropDown setFilter={setDropFilter} data={DropFilterData} />
+          <FilterDropDown setFilter={setDropFilter} data={DraftFilterData} />
         </div>
       </div>
       <MainTable table={table} />
