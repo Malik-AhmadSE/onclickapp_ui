@@ -1,4 +1,5 @@
 import UserData from "../garbadge/userData"
+import HeaderDropDown from "./headerDropDown"
 
 export function SiteHeader() {
   return (
@@ -11,6 +12,9 @@ export function SiteHeader() {
           <div className="flex items-center gap-2">
             <div className="bg-[#0000000D] w-[36px] h-[36px] flex items-center justify-center rounded-full">
               <img src="/notification.svg" alt="" />
+            </div>
+            <div>
+              <HeaderDropDown/>
             </div>
             {
               UserData.map((user, index) => (
