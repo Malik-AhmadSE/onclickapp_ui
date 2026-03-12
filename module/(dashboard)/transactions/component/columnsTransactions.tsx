@@ -42,15 +42,15 @@ const columns: ColumnDef<History>[] = [
     {
         accessorKey: "merchant",
         header: "Merchant",
-        
+
     },
     {
         accessorKey: "category",
         header: "Category",
-        cell : ({row})=>{
+        cell: ({ row }) => {
             const category = row.original.category
 
-            return(
+            return (
                 <div className="flex items-center gap-2">
                     <img src="category-arrow.svg" alt="" />
                     {category}
@@ -88,7 +88,7 @@ const columns: ColumnDef<History>[] = [
         header: "Action",
         cell: ({ row }) => {
             return (
-               <AlertDialogDelete/>
+                <AlertDialogDelete />
             )
         },
     },

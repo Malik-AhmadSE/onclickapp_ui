@@ -98,7 +98,7 @@ const columns: ColumnDef<History>[] = [
       cell: ({ row }) => {
         const router = useRouter()
 const handelRoute = () =>{
-   router.push("/transactions")
+   router.push("/drafts/transactions")
     
 }
         return (

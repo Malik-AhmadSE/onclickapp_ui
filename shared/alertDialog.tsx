@@ -11,7 +11,6 @@ import {
     AlertDialogTrigger,
 } from "@/shared/ui/alert-dialog"
 import { Button } from "@/shared/ui/button"
-import { Trash2Icon } from "lucide-react"
 
 export function AlertDialogDelete() {
     return (
@@ -23,7 +22,7 @@ export function AlertDialogDelete() {
                 <AlertDialogHeader className="flex justify-between items-center">
                     <AlertDialogTitle>Delete Entery?</AlertDialogTitle> 
                     <AlertDialogCancel  className="border-0 shadow-none! bg-transparent!  
-                   "><img src="Close-button.svg" alt="" /></AlertDialogCancel>
+                   "><img src="/Close-button.svg" alt="" /></AlertDialogCancel>
                 </AlertDialogHeader>
                  <AlertDialogDescription>
                         Are you sure you want to delete this entry?      
