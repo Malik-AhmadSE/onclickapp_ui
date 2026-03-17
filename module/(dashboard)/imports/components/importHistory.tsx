@@ -24,7 +24,7 @@ export function ImportHistory() {
   }
 
   const table = useReactTable({
-    data: HistoryData,
+    data: HistoryData.slice(0,4),
     columns,
     state: {
       rowSelection,

@@ -3,6 +3,7 @@ import { Checkbox } from "@/shared/ui/checkbox";
 import { Field } from "@/shared/ui/field";
 import { Loader2 } from "lucide-react";
 import { loginPageContent } from "../data/login.data";
+import Link from "next/link";
 
 interface LoginFormFooterProps {
     isLoading?: boolean;
@@ -65,9 +66,7 @@ export default function LoginFormFooter({ isLoading, handleForgotPassword }: Log
             </Field>
             <div className="text-center mt-8 text-sm text-muted-foreground">
                 {form.noAccount}{" "}
-                <a href="#" className="underline underline-offset-4">
-                    {form.signUp}
-                </a>
+                <Link href="/register" className="underline underline-offset-4">{form.signUp}</Link>
             </div>
         </>
     );

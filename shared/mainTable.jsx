@@ -15,10 +15,7 @@ import {
 } from "@tanstack/react-table"
 
 export default function MainTable({table}){
- 
 
-  
- 
     return(
           <Table>
         <TableHeader>
@@ -53,7 +50,7 @@ export default function MainTable({table}){
           ) : (
             <TableRow>
               <TableCell
-                colSpan={columns.length}
+                colSpan={table.getVisibleLeafColumns().length}
                 className="text-center py-6"
               >
                 No results found.

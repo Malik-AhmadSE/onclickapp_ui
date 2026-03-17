@@ -26,11 +26,11 @@ export function NavMain({
     <SidebarGroup>
       <SidebarGroupContent className="">
 
-        <SidebarMenu className="flex flex-col gap-2 z-50 2xl:w-[210px] w-50">
+        <SidebarMenu className="flex flex-col gap-2 z-50">
           {items.map((item) => (
             <SidebarMenuItem key={item.title} className="group/item">
               <SidebarMenuButton
-                className={`h-11 pt-3 pb-3 pl-3 pr-2 rounded-xl gap-2.5 hover:text-black hover:bg-[#AEE485] ${item.isActive
+                className={`h-11 pt-3 pb-3 pl-3 pr-2 rounded-xl  gap-2.5 hover:text-black  hover:bg-[#AEE485] ${item.isActive
                   ? 'bg-[#AEE485] text-black'
                   : 'text-white'
                   }`}
@@ -47,7 +47,7 @@ export function NavMain({
                     : 'brightness-0 invert group-hover/item:brightness-0 group-hover/item:invert-0'
                     }`}
                 />
-                <h1 className="text-[16px] font-medium ">{item.title}</h1>
+                <h1 className="text-[16px] font-medium  ">{item.title}</h1>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}

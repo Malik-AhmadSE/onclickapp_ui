@@ -3,6 +3,8 @@ import { ColumnDef } from "@tanstack/react-table"
 import { Checkbox } from "@/shared/ui/checkbox"
 import { Badge } from "@/shared/ui/badge"
 import { Button } from "@/shared/ui/button"
+import { useRouter } from "next/navigation"
+
 
 
 type History = {
@@ -71,16 +73,16 @@ const columns: ColumnDef<History>[] = [
     },
     {
       accessorKey: "status",
-      header: "Status",
+      header: "Confidence",
       cell: ({ row }) => {
         const status = row.original.status
 
         return (
           <Badge
             className={
-              status === "Pending Reviews"
+              status === "Medium"
                 ? "bg-yellow-100 text-yellow-700"
-                : status === "Completed"
+                : status === "High"
                   ? "bg-green-100 text-green-700"
                   : "bg-red-100 text-red-700"
             }
@@ -94,10 +96,16 @@ const columns: ColumnDef<History>[] = [
       id: "actions", // important: use id instead of accessorKey
       header: "Action",
       cell: ({ row }) => {
+        const router = useRouter()
+const handelRoute = () =>{
+   router.push("/drafts/transactions")
+    
+}
         return (
           <Button
             variant="outline"
             size="sm"
+            onClick={handelRoute}
           >
            <div className="text-[#999999] text-[12px]">
              Review Doc
